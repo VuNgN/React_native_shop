@@ -1,0 +1,78 @@
+{
+    "category": [
+        {
+            "id": 1,
+            "text": "Snow board"
+        },
+        {
+            "id": 2,
+            "text": "Phone"
+        },
+        {
+            "id": 1,
+            "text": "Laptop"
+        },
+        {
+            "id": 1,
+            "text": "Toys"
+        }
+    ],
+    "products": [
+        {
+            "id": 1,
+            "img": "https://cdn.webshopapp.com/shops/212063/files/341714241/650x650x2/nitro-snowboard-team-exposure.jpg",
+            "name": "Snow board 1",
+            "price": "5000000",
+            "category": 1
+        },
+        {
+            "id": 2,
+            "img": "https://www.burton.com/static/product/W22/10691108000142_1.png",
+            "name": "Snow board 2",
+            "price": "4000000",
+            "category": 1
+        },
+        {
+            "id": 1,
+            "img": "https://static.super-shop.com/1169923-lib-tech-dynamo-snowboard-960w.jpg",
+            "name": "Snow board 3",
+            "price": "7000000",
+            "category": 1
+        },
+        {
+            "id": 1,
+            "img": "https://static.super-shop.com/1161425-burton-ripcord-snowboard-960w.jpg",
+            "name": "Snow board 4",
+            "price": "23000000",
+            "category": 1
+        },
+        {
+            "id": 1,
+            "img": "https://cdn.webshopapp.com/shops/212063/files/341714241/650x650x2/nitro-snowboard-team-exposure.jpg",
+            "name": "Snow board 1",
+            "price": "5000000",
+            "category": 1
+        },
+        {
+            "id": 2,
+            "img": "https://www.burton.com/static/product/W22/10691108000142_1.png",
+            "name": "Snow board 2",
+            "price": "4000000",
+            "category": 1
+        },
+        {
+            "id": 1,
+            "img": "https://static.super-shop.com/1169923-lib-tech-dynamo-snowboard-960w.jpg",
+            "name": "Snow board 3",
+            "price": "7000000",
+            "category": 1
+        },
+        {
+            "id": 1,
+            "img": "https://static.super-shop.com/1161425-burton-ripcord-snowboard-960w.jpg",
+            "name": "Snow board 4",
+            "price": "23000000",
+            "category": 1
+        }
+    ]
+}
