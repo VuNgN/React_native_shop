@@ -4,7 +4,7 @@ import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
 import CartListItem from '../components/CartListItem';
 
 export default function cart() {
-    const { cart, addToCart, removeToCart } = useContext( MyContext );
+    const { cart, addToCart, removeToCart, addQuanityCart } = useContext( MyContext );
     if (cart.length > 0) {
         return (
             <View style={styles.container}>
@@ -15,6 +15,7 @@ export default function cart() {
                             product={item} 
                             addToCart={addToCart} 
                             removeToCart={removeToCart} 
+                            addQuanityCart={addQuanityCart}
                             key={ item.id || index } 
                         />
                     }

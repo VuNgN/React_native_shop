@@ -7,8 +7,9 @@ import {
     StyleSheet,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import convertMoney from './config/priceConfig';
 
-export default function CartListItem({ product, addToCart, removeToCart }) {
+export default function CartListItem({ product, addToCart, removeToCart, addQuanityCart }) {
     return (
         <TouchableOpacity
             activeOpacity={0.9}
@@ -26,7 +27,7 @@ export default function CartListItem({ product, addToCart, removeToCart }) {
                 <View style={styles.body}>
                     <View style={styles.content}>
                         <Text style={styles.name}>{product.name}</Text>
-                        <Text style={styles.price}>{product.price}</Text>
+                        <Text style={styles.price}>{convertMoney(product.price)}</Text>
                     </View>
                     <View style={styles.footer}>
                         <TouchableOpacity
@@ -41,7 +42,7 @@ export default function CartListItem({ product, addToCart, removeToCart }) {
                         <Text style={styles.quantity}>{product.quantity}</Text>
                         <TouchableOpacity
                             TouchableOpacity={0.5}
-                            onPress={() => addToCart(product)}
+                            onPress={() => addQuanityCart(product)}
                         >
                             <View style={styles.quantityBtn}>
 

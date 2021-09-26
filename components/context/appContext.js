@@ -29,6 +29,10 @@ export function MyProviderConText(props) {
             }
         );
     }
+    function addQuanityCart(product) {
+        cart.find((item)=> item.id === product.id).quantity += 1;
+        changeCart([...cart])
+    }
     function removeToCart(product) {
         if (cart.find((item)=> item.id === product.id).quantity <= 1) {
             cart.splice(cart.findIndex((item)=> item.id === product.id), 1);
@@ -43,6 +47,7 @@ export function MyProviderConText(props) {
             cart,
             addToCart,
             removeToCart,
+            addQuanityCart,
         }}>
             {props.children}
         </MyContext.Provider>

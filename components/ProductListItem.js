@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { MyContext } from './context/appContext';
+import convertMoney from './config/priceConfig';
 
 export default function ProductListItem({ product }) {
     const { addToCart } = useContext(MyContext); 
@@ -16,7 +17,7 @@ export default function ProductListItem({ product }) {
                 <View style={styles.content}>
                     <Text style={styles.title}>{product.name}</Text>
                     <View style={styles.priceRow}>
-                        <Text style={styles.price}>{product.price}</Text>
+                        <Text style={styles.price}>{convertMoney(product.price)}</Text>
                         <TouchableOpacity
                             onPress={() => addToCart(product)}
                         >
