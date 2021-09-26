@@ -15,10 +15,10 @@ export default function cart() {
                             product={item} 
                             addToCart={addToCart} 
                             removeToCart={removeToCart} 
-                            key={index} 
+                            key={ item.id || index } 
                         />
                     }
-                    keyExtractor={(item, index) => { `${index}` }}
+                    keyExtractor={(item, index) => `${item.id || index}`}
                     style={styles.scrollContainer}
                 />
             </View>
