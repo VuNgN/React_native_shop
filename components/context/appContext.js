@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import cartListItem from '../../data/cartListItem';
+import { Alert } from 'react-native';
 
 export const MyContext = React.createContext();
 export function MyProviderConText(props) {
@@ -15,6 +16,18 @@ export function MyProviderConText(props) {
                 changeCart([...cart, {...product, quantity: 1 }]);
             }
         }
+        Alert.alert(
+            'Thông báo',
+            'Bạn đã thêm vào giỏ hàng thành công !!',
+            [
+                {
+                    text: 'OK',
+                }
+            ],
+            {
+                cancelable: true,
+            }
+        );
     }
     function removeToCart(product) {
         if (cart.find((item)=> item.id === product.id).quantity <= 1) {

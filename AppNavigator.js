@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
@@ -15,6 +15,7 @@ import homeIcon from './assets/home.png';
 import cartIcon from './assets/shopping-cart.png';
 import orderIcon from './assets/shopping-bag.png';
 import settingIcon from './assets/cogwheel.png';
+import { MyContext } from './components/context/appContext';
 
 const homeStack = createNativeStackNavigator();
 
@@ -52,7 +53,7 @@ const settingsStackScreen = () =>
 
 const Tab = createBottomTabNavigator();
 
-const bottomTab = () => 
+const bottomTab = ( cart ) => 
     <Tab.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen 
             name="Home" 
@@ -76,7 +77,9 @@ const bottomTab = () =>
                     focused ?
                     <Image source={ cartActiveIcon } style={{height:25, width:25,}} />
                     : <Image source={ cartIcon } style={{height:25, width:25,}} />,
-                    tabBarActiveTintColor: '#000'
+                    tabBarActiveTintColor: '#000',
+                    tabBarBadge: cart.length,
+                    tabBarBadgeStyle: { backgroundColor: '#00FFEA', color: '#000' }
                 }
             }         />
         <Tab.Screen 
@@ -109,7 +112,8 @@ const bottomTab = () =>
 
 
 export default function MyStack() {
+    const { cart } = useContext( MyContext );
     return (
-        bottomTab()
+        bottomTab( cart )
     );
 }
