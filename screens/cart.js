@@ -1,35 +1,36 @@
-import React from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import React, { useContext } from 'react';
+import { MyContext } from '../components/context/appContext'
+import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
 import CartListItem from '../components/CartListItem';
 
-const carts = [
-    {
-        id: 1,
-        img: 'https://cdn.webshopapp.com/shops/212063/files/341714241/650x650x2/nitro-snowboard-team-exposure.jpg',
-        name: 'Snow board 1',
-        price: '5000000',
-        category: 1,
-        quantity: 1,
-
-    },
-    {
-        name: 'avc 2',
-    }
-];
-
 export default function cart() {
-    return (
-        <View style={styles.container}>
-            <FlatList
-                data={carts}
-                renderItem={({ item, index }) =>
-                    <CartListItem product={item} />
-                }
-                keyExtractor={(item, index) => { `${index}` }}
-                style={styles.scrollContainer}
-            />
-        </View>
-    )
+    const { cart, addToCart, removeToCart } = useContext( MyContext );
+    if (cart.length > 0) {
+        return (
+            <View style={styles.container}>
+                <FlatList
+                    data={cart}
+                    renderItem={({ item, index }) =>
+                        <CartListItem 
+                            product={item} 
+                            addToCart={addToCart} 
+                            removeToCart={removeToCart} 
+                            key={index} 
+                        />
+                    }
+                    keyExtractor={(item, index) => { `${index}` }}
+                    style={styles.scrollContainer}
+                />
+            </View>
+        )
+    }else {
+        return (
+            <View style={styles.containerEmpty}>
+                <Image style={styles.emptyCartImage} source={require('../assets/empty-cart.png')} />
+                <Text style={styles.emptyCartText}>Giỏ hàng trống</Text>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -41,5 +42,26 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
     },
-    scrollContainer: {}
+    containerEmpty: {
+        flex: 1,
+        backgroundColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingLeft: 20,
+        paddingRight: 20,
+    },
+    scrollContainer: {
+        paddingTop: 10,
+    },
+    emptyCartImage: {
+        width: 200,
+        height: 200,
+        marginRight: 30,
+        marginBottom: 20,
+    },
+    emptyCartText: {
+        fontSize: 30,
+        fontWeight: '500',
+        color: '#00B3C3',
+    }
 })

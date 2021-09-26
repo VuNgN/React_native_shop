@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function CartListItem({ product }) {
+export default function CartListItem({ product, addToCart, removeToCart }) {
     return (
         <TouchableOpacity
             activeOpacity={0.9}
@@ -31,6 +31,7 @@ export default function CartListItem({ product }) {
                     <View style={styles.footer}>
                         <TouchableOpacity
                             activeOpacity={0.5}
+                            onPress={() => removeToCart(product)}
                         >
                             <View style={styles.quantityBtn}>
 
@@ -39,7 +40,8 @@ export default function CartListItem({ product }) {
                         </TouchableOpacity>
                         <Text style={styles.quantity}>{product.quantity}</Text>
                         <TouchableOpacity
-                            TouchableOpacity={0.9}
+                            TouchableOpacity={0.5}
+                            onPress={() => addToCart(product)}
                         >
                             <View style={styles.quantityBtn}>
 

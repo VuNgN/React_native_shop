@@ -1,7 +1,9 @@
-import React from 'react'
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
+import React, { useContext } from 'react';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { MyContext } from './context/appContext';
 
-export default function ProductListItem({ product, onAddToCartClick }) {
+export default function ProductListItem({ product }) {
+    const { addToCart } = useContext(MyContext); 
     return (
         <View style={styles.shadowOffset}>
             <View style={styles.container}>
@@ -15,7 +17,9 @@ export default function ProductListItem({ product, onAddToCartClick }) {
                     <Text style={styles.title}>{product.name}</Text>
                     <View style={styles.priceRow}>
                         <Text style={styles.price}>{product.price}</Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => addToCart(product)}
+                        >
                             <Text style={styles.buy}>BUY +</Text>
                         </TouchableOpacity>
                     </View>
