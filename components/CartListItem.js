@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     },
     body: {
         marginLeft: 0,
+        width: '100%',
     },
     content: {
         flex: 1,
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
     footer: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: 220
+        width: '60%'
     },
     quantityBtn: {
         flex: 1,
