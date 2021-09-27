@@ -5,7 +5,7 @@ import { Image } from 'react-native';
 import category from './screens/category';
 import categories from './screens/categories';
 import cart from './screens/cart';
-import Orders from './screens/orders';
+import Home from './screens/home';
 import Setting from './screens/setting';
 import homeActiveIcon from './assets/homeActive.png';
 import cartActiveIcon from './assets/shopping-cartActive.png';
@@ -20,9 +20,8 @@ import { MyContext } from './components/context/appContext';
 const homeStack = createNativeStackNavigator();
 
 const homeStackScreen = () => 
-    <homeStack.Navigator>
-        <homeStack.Screen name="categories" component={categories} options={{ title: 'My home' }} />
-        <homeStack.Screen name="category" component={category} options={{ title: 'category' }} />
+    <homeStack.Navigator screenOptions={{ headerShown: false }}>
+        <homeStack.Screen name="categories" component={Home} options={{ title: 'My home' }} />
     </homeStack.Navigator>
 
 
@@ -34,12 +33,13 @@ const cartStackScreen = () =>
     </cartStack.Navigator>
 
 
-const ordersStack = createNativeStackNavigator();
+const shopStack = createNativeStackNavigator();
 
-const ordersStackScreen = () => 
-    <ordersStack.Navigator>
-        <ordersStack.Screen name="categories" component={Orders} options={{ title: 'My orders' }} />
-    </ordersStack.Navigator>
+const shopStackScreen = () => 
+    <shopStack.Navigator>
+        <shopStack.Screen name="categories" component={categories} options={{ title: 'Shoping' }} />
+        <shopStack.Screen name="category" component={category} options={{ title: 'category' }} />
+    </shopStack.Navigator>
 
 
 
@@ -69,6 +69,19 @@ const bottomTab = ( cart ) =>
             } 
         />
         <Tab.Screen 
+            name="Shop" 
+            component={shopStackScreen} 
+            options={
+                {
+                    tabBarIcon:({ focused }) => 
+                    focused ?
+                    <Image source={ orderActiveIcon } style={{height:25, width:25,}} />
+                    : <Image source={ orderIcon } style={{height:25, width:25,}} />,
+                    tabBarActiveTintColor: '#000'
+                }
+            } 
+        />
+        <Tab.Screen 
             name="Cart" 
             component={cartStackScreen} 
             options={
@@ -81,19 +94,7 @@ const bottomTab = ( cart ) =>
                     tabBarBadge: cart.length,
                     tabBarBadgeStyle: { backgroundColor: '#00FFEA', color: '#000' }
                 }
-            }         />
-        <Tab.Screen 
-            name="Orders" 
-            component={ordersStackScreen} 
-            options={
-                {
-                    tabBarIcon:({ focused }) => 
-                    focused ?
-                    <Image source={ orderActiveIcon } style={{height:25, width:25,}} />
-                    : <Image source={ orderIcon } style={{height:25, width:25,}} />,
-                    tabBarActiveTintColor: '#000'
-                }
-            } 
+            }         
         />
         <Tab.Screen 
             name="Settings" 
