@@ -19,41 +19,70 @@ import { MyContext } from './components/context/appContext';
 
 const homeStack = createNativeStackNavigator();
 
-const homeStackScreen = () => 
-    <homeStack.Navigator screenOptions={{ headerShown: false }}>
-        <homeStack.Screen name="categories" component={Home} options={{ title: 'My home' }} />
+const HomeStackScreen = ({isDarkMode}) => 
+    <homeStack.Navigator screenOptions={{ 
+            headerShown: false,  
+        }}>
+        <homeStack.Screen name="categories" component={Home} options={{ 
+            title: 'My home', 
+            headerStyle: {
+                backgroundColor: isDarkMode ? '#202020' : '#fff',
+            }, 
+            headerTintColor: isDarkMode ? '#fff': '#000', }} />
     </homeStack.Navigator>
 
 
 const cartStack = createNativeStackNavigator();
 
-const cartStackScreen = () => 
+const CartStackScreen = ({isDarkMode}) => 
     <cartStack.Navigator>
-        <cartStack.Screen name="categories" component={cart} options={{ title: 'My cart' }} />
+        <cartStack.Screen name="categories" component={cart} options={{ 
+            title: 'My cart',
+            headerStyle: {
+                backgroundColor: isDarkMode ? '#202020' : '#fff',
+            }, 
+            headerTintColor: isDarkMode ? '#fff': '#000',
+        }} 
+        />
     </cartStack.Navigator>
 
 
 const shopStack = createNativeStackNavigator();
 
-const shopStackScreen = () => 
+const ShopStackScreen = ({isDarkMode}) => 
     <shopStack.Navigator>
-        <shopStack.Screen name="categories" component={categories} options={{ title: 'Shoping' }} />
-        <shopStack.Screen name="category" component={category} options={{ title: 'category' }} />
+        <shopStack.Screen name="categories" component={categories} options={{ 
+            title: 'Shoping',
+            headerStyle: {
+                backgroundColor: isDarkMode ? '#202020' : '#fff',
+            }, 
+            headerTintColor: isDarkMode ? '#fff': '#000', }} />
+        <shopStack.Screen name="category" component={category} options={{ 
+            title: 'category',
+            headerStyle: {
+                backgroundColor: isDarkMode ? '#202020' : '#fff',
+            }, 
+            headerTintColor: isDarkMode ? '#fff': '#000', }} />
     </shopStack.Navigator>
 
 
 
 const settingsStack = createNativeStackNavigator();
 
-const settingsStackScreen = () => 
+const SettingsStackScreen = ({isDarkMode}) => 
     <settingsStack.Navigator>
-        <settingsStack.Screen name="categories" component={Setting} options={{ title: 'My setting' }} />
+        <settingsStack.Screen name="categories" component={Setting} options={{ 
+            title: 'My setting',
+            headerStyle: {
+                backgroundColor: isDarkMode ? '#202020' : '#fff',
+            }, 
+            headerTintColor: isDarkMode ? '#fff': '#000', }} />
     </settingsStack.Navigator>
 
 
 const Tab = createBottomTabNavigator();
 
-const bottomTab = ( cart ) => 
+const bottomTab = ( cart, isDarkMode ) => 
     <Tab.Navigator screenOptions={{ 
         headerShown: false,
         tabBarStyle: { 
@@ -62,7 +91,7 @@ const bottomTab = ( cart ) =>
       }}>
         <Tab.Screen 
             name="Home" 
-            component={homeStackScreen} 
+            children={() => <HomeStackScreen isDarkMode={isDarkMode} />}
             options={ 
                 {
                   tabBarIcon:({ focused }) => 
@@ -76,7 +105,7 @@ const bottomTab = ( cart ) =>
         />
         <Tab.Screen 
             name="Shop" 
-            component={shopStackScreen} 
+            children={() => <ShopStackScreen isDarkMode={isDarkMode} />}
             options={
                 {
                     tabBarIcon:({ focused }) => 
@@ -89,7 +118,8 @@ const bottomTab = ( cart ) =>
         />
         <Tab.Screen 
             name="Cart" 
-            component={cartStackScreen} 
+            // component={() => <CartStackScreen isDarkMode={isDarkMode} />} 
+            children={() => <CartStackScreen isDarkMode={isDarkMode} />}
             options={
                 {
                     tabBarIcon:({ focused }) => 
@@ -104,7 +134,7 @@ const bottomTab = ( cart ) =>
         />
         <Tab.Screen 
             name="Settings" 
-            component={settingsStackScreen} 
+            children={() => <SettingsStackScreen isDarkMode={isDarkMode} />}
             options={
                 {
                     tabBarIcon:({ focused }) => 
@@ -119,8 +149,8 @@ const bottomTab = ( cart ) =>
 
 
 export default function MyStack() {
-    const { cart } = useContext( MyContext );
+    const { cart, isDarkMode } = useContext( MyContext );
     return (
-        bottomTab( cart )
+        bottomTab( cart, isDarkMode )
     );
 }
