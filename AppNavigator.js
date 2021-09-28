@@ -54,17 +54,23 @@ const settingsStackScreen = () =>
 const Tab = createBottomTabNavigator();
 
 const bottomTab = ( cart ) => 
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator screenOptions={{ 
+        headerShown: false,
+        tabBarStyle: { 
+          position: 'absolute',
+         },
+      }}>
         <Tab.Screen 
             name="Home" 
             component={homeStackScreen} 
-            options={
+            options={ 
                 {
-                    tabBarIcon:({ focused }) => 
+                  tabBarIcon:({ focused }) => 
                     focused ?
                     <Image source={ homeActiveIcon } style={{height:25, width:25,}} />
-                    : <Image source={ homeIcon } style={{height:25, width:25,}} />,
-                    tabBarActiveTintColor: '#000'
+                    : <Image source={ homeIcon } style={{height:25, width:25,}} />
+                  ,
+                  tabBarActiveTintColor: '#000'
                 }
             } 
         />
@@ -74,9 +80,9 @@ const bottomTab = ( cart ) =>
             options={
                 {
                     tabBarIcon:({ focused }) => 
-                    focused ?
-                    <Image source={ orderActiveIcon } style={{height:25, width:25,}} />
-                    : <Image source={ orderIcon } style={{height:25, width:25,}} />,
+                      focused ?
+                      <Image source={ orderActiveIcon } style={{height:25, width:25,}} />
+                      : <Image source={ orderIcon } style={{height:25, width:25,}} />,
                     tabBarActiveTintColor: '#000'
                 }
             } 

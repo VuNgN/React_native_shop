@@ -4,9 +4,14 @@ import { MyContext } from './context/appContext';
 import convertMoney from './config/priceConfig';
 
 export default function ProductListItem({ product }) {
-    const { addToCart } = useContext(MyContext); 
+    const { addToCart, isDarkMode } = useContext(MyContext); 
     return (
-        <View style={styles.shadowOffset}>
+        <View style={[styles.shadowOffset, 
+              {
+                backgroundColor: isDarkMode ? '#000' : '#fff',
+                borderColor: isDarkMode ? '#fff' : 'none',
+                borderWidth: isDarkMode ? 1 : 0,
+              }]}>
             <View style={styles.container}>
                 <Image
                     style={styles.imageProduct}
@@ -15,7 +20,9 @@ export default function ProductListItem({ product }) {
                     }}
                 />
                 <View style={styles.content}>
-                    <Text style={styles.title}>{product.name}</Text>
+                    <Text style={[styles.title, { color: isDarkMode ? '#fff' : '#000' }]}>
+                        {product.name}
+                    </Text>
                     <View style={styles.priceRow}>
                         <Text style={styles.price}>{convertMoney(product.price)}</Text>
                         <TouchableOpacity

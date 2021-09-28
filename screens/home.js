@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { MyContext } from '../components/context/appContext';
 import SvgCart from './svg/home/SvgCart';
 
 export default function orders() {
+    const { isDarkMode } = useContext(MyContext);
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Welcome.</Text>
-            <Text style={styles.desc}>Let's shopping now</Text>
+        <View style={[styles.container, { backgroundColor: isDarkMode ? '#000' : '#fff'}]}>
+            <Text style={[
+                styles.title, 
+                { color: isDarkMode ? '#fff' : '#000'}
+              ]}>Welcome.</Text>
+            <Text style={[
+                styles.desc, 
+                { color: isDarkMode ? '#fff' : '#000'}
+              ]}>Let's shopping now</Text>
             <View style={styles.icon}>
                 <SvgCart />
             </View>

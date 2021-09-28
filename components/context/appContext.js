@@ -5,6 +5,8 @@ import { Alert } from 'react-native';
 export const MyContext = React.createContext();
 export function MyProviderConText(props) {
     const [ cart, changeCart ] = useState(cartListItem);
+    const [ isDarkMode, setIsDarkMode ] = useState(false);
+    const toggleSwitch = () => setIsDarkMode(previousState => !previousState);
     function addToCart(product) {
         if (cart.length <= 0) {
             changeCart([...cart, {...product, quantity: 1 }]);
@@ -48,6 +50,8 @@ export function MyProviderConText(props) {
             addToCart,
             removeToCart,
             addQuanityCart,
+            isDarkMode,
+            toggleSwitch,
         }}>
             {props.children}
         </MyContext.Provider>

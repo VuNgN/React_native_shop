@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { MyContext } from './context/appContext';
 import {
     View,
     Text,
@@ -8,13 +9,18 @@ import {
 } from 'react-native';
 
 export default function CategoryListItem({ text, img, onPress }) {
+    const { isDarkMode } = useContext( MyContext );
     return (
         <TouchableOpacity 
             TouchableOpacity={0.9}
             onPress={onPress}
         >
-            <View style={styles.view}>
-                <Text style={styles.text}>
+            <View style={[styles.view, {
+                backgroundColor: isDarkMode ? '#000' : '#fff',
+                borderColor: isDarkMode ? '#fff' : 'none',
+                borderWidth: isDarkMode ? 1 : 0,
+              }]}>
+                <Text style={[styles.text, { color: isDarkMode ? '#fff' : '#000' }]}>
                     { text }
                 </Text>
                 <Image style={styles.image} source={ img } />

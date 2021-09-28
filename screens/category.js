@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { MyContext } from '../components/context/appContext';
 import { StyleSheet, View, FlatList, StatusBar } from 'react-native';
 import ProductListItem from '../components/ProductListItem';
 import productList from '../data/product/productListItem';
 
 
 export default function Category({ navigation, route }) {
+  const { isDarkMode } = useContext( MyContext );
   const { categoryName, categoryId } = route.params;
   React.useLayoutEffect(() => {
     navigation.setOptions({ headerTitle: categoryName });
   }, [navigation, route]);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: isDarkMode ? '#000' : '#fff' }]}>
       <FlatList 
         data={productList.products.filter((item) => item.category === categoryId)}
-        renderItem={({ item, index }) => <View style={styles.wrapper}><ProductListItem product={item} key={index} /></View>}
+        renderItem={({ item, index }) => 
+            <View style={styles.wrapper}>
+                <ProductListItem product={item} key={index} />
+            </View>}
         keyExtractor={(item, index) => `${index}`}
         numColumns={2}
         contentContainerStyle={styles.scrollView}

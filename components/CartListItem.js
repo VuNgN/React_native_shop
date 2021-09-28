@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { MyContext } from './context/appContext';
 import {
     View,
     Text,
@@ -10,11 +11,16 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import convertMoney from './config/priceConfig';
 
 export default function CartListItem({ product, addToCart, removeToCart, addQuanityCart }) {
+    const { isDarkMode } = useContext( MyContext );
     return (
         <TouchableOpacity
             activeOpacity={0.9}
         >
-            <View style={styles.container}>
+            <View style={[styles.container, {
+                backgroundColor: isDarkMode ? '#000' : '#fff',
+                borderColor: isDarkMode ? '#fff' : 'none',
+                borderWidth: isDarkMode ? 1 : 0,
+              }]}>
                 <View style={styles.imageView}>
                     <Image
                         resizeMode='cover'
@@ -26,7 +32,9 @@ export default function CartListItem({ product, addToCart, removeToCart, addQuan
                 </View>
                 <View style={styles.body}>
                     <View style={styles.content}>
-                        <Text style={styles.name}>{product.name}</Text>
+                        <Text style={[styles.name, { color: isDarkMode ? '#fff' : '#000' }]}>
+                            {product.name}
+                        </Text>
                         <Text style={styles.price}>{convertMoney(product.price)}</Text>
                     </View>
                     <View style={styles.footer}>
@@ -34,18 +42,27 @@ export default function CartListItem({ product, addToCart, removeToCart, addQuan
                             activeOpacity={0.5}
                             onPress={() => removeToCart(product)}
                         >
-                            <View style={styles.quantityBtn}>
-
+                            <View style={[styles.quantityBtn, {
+                                          borderColor: isDarkMode ? '#fff' : 'none',
+                                          borderWidth: isDarkMode ? 1 : 0,
+                                        }]}
+                            >
                                 <Icon name="minus" size={15} color="#fff" />
                             </View>
                         </TouchableOpacity>
-                        <Text style={styles.quantity}>{product.quantity}</Text>
+                        <Text style={[styles.quantity, 
+                        { color: isDarkMode ? '#fff' : '#000' }]}>
+                            {product.quantity}
+                        </Text>
                         <TouchableOpacity
                             TouchableOpacity={0.5}
                             onPress={() => addQuanityCart(product)}
                         >
-                            <View style={styles.quantityBtn}>
-
+                            <View style={[styles.quantityBtn, {
+                                          borderColor: isDarkMode ? '#fff' : '#none',
+                                          borderWidth: isDarkMode ? 1 : 0,
+                                        }]}
+                            >
                                 <Icon name="plus" size={15} color="#fff" />
                             </View>
                         </TouchableOpacity>

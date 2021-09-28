@@ -1,15 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, ScrollView, FlatList } from 'react-native';
 import CategoryListItem from '../components/CategoryListItem';
 import listCategory from '../data/categories';
+import { MyContext } from '../components/context/appContext';
 
 export default function Categories({navigation}) {
+  const { isDarkMode } = useContext( MyContext );
   return (
-    <View style={styles.container}>
-      {/* <ScrollView contentContainerStyle={styles.scrollView}>
-        {listCategory.map((category, index) => <CategoryListItem text={category.text} img={category.img} key={index} />)}
-      </ScrollView> */}
+    <View style={[styles.container, { backgroundColor: isDarkMode ? '#000' : '#fff' }]}>
       <FlatList 
         data= {listCategory}
         renderItem={({ item, index }) => 
