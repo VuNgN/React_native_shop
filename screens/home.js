@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { MyContext } from '../components/context/appContext';
 import SvgCart from './svg/home/SvgCart';
+import StatusBar from '../components/statusBar';
 
 export default function orders() {
     const { isDarkMode } = useContext(MyContext);
@@ -18,6 +19,7 @@ export default function orders() {
             <View style={styles.icon}>
                 <SvgCart />
             </View>
+            <StatusBar />
         </View>
     )
 }

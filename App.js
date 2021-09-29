@@ -3,10 +3,13 @@ import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import MyStack from './AppNavigator';
 import { MyProviderConText } from './components/context/appContext';
+import StatusBar from './components/statusBar';
+
 
 export default function App() {
   return (
     <MyProviderConText>
+      <StatusBar />
       <NavigationContainer>
         <MyStack />
       </NavigationContainer>

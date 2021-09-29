@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { MyContext } from '../components/context/appContext';
-import { StyleSheet, View, FlatList, StatusBar } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import ProductListItem from '../components/ProductListItem';
 import productList from '../data/product/productListItem';
+import StatusBar from '../components/statusBar';
 
 
 export default function Category({ navigation, route }) {
@@ -24,7 +25,7 @@ export default function Category({ navigation, route }) {
         numColumns={2}
         contentContainerStyle={styles.scrollView}
       />
-      <StatusBar style="auto" />
+      <StatusBar />
     </View>
   );
 }

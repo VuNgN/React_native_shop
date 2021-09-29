@@ -1,9 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useContext } from 'react';
-import { StyleSheet, View, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import CategoryListItem from '../components/CategoryListItem';
 import listCategory from '../data/categories';
 import { MyContext } from '../components/context/appContext';
+import StatusBar from '../components/statusBar';
 
 export default function Categories({navigation}) {
   const { isDarkMode } = useContext( MyContext );
@@ -24,7 +24,7 @@ export default function Categories({navigation}) {
         keyExtractor={(item, index) => `${index}`}
         contentContainerStyle={styles.scrollView}
       />
-      <StatusBar style="auto" />
+      <StatusBar />
     </View>
   );
 }

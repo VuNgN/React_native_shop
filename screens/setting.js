@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { MyContext } from '../components/context/appContext';
-import { View, Text, FlatList, StatusBar, Switch, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import SettingListItem from '../components/settingListItem';
 import Settings from '../data/settings';
+import StatusBar from '../components/statusBar';
 
 export default function setting() {
   const { isDarkMode } = useContext( MyContext );
@@ -15,7 +16,7 @@ export default function setting() {
         keyExtractor={(item, index) => `${index}`}
         contentContainerStyle={styles.scrollView}
       />
-      <StatusBar style="auto" />
+      <StatusBar />
       </View>
     </View>
   );

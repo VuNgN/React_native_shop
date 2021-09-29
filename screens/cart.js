@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { MyContext } from '../components/context/appContext';
 import { View, Text, Image, FlatList, StyleSheet } from 'react-native';
 import CartListItem from '../components/CartListItem';
+import StatusBar from '../components/statusBar';
 
 export default function cart() {
   const { cart, addToCart, removeToCart, addQuanityCart, isDarkMode } = useContext(
@@ -24,6 +25,7 @@ export default function cart() {
           keyExtractor={(item, index) => `${item.id || index}`}
           style={styles.scrollContainer}
         />
+        <StatusBar />
       </View>
     );
   } else {
@@ -34,6 +36,7 @@ export default function cart() {
           source={require('../assets/empty-cart.png')}
         />
         <Text style={styles.emptyCartText}>Your cart is empty</Text>
+        <StatusBar />
       </View>
     );
   }
