@@ -2,19 +2,27 @@ import React, { useContext } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
+import Home from './screens/home';
 import category from './screens/category';
 import categories from './screens/categories';
 import cart from './screens/cart';
-import Home from './screens/home';
 import Setting from './screens/setting';
-import homeActiveIcon from './assets/homeActive.png';
-import cartActiveIcon from './assets/shopping-cartActive.png';
-import orderActiveIcon from './assets/shopping-bagActive.png';
-import settingActiveIcon from './assets/cogwheelActive.png';
 import homeIcon from './assets/home.png';
-import cartIcon from './assets/shopping-cart.png';
+import homeActiveIcon from './assets/homeActive.png';
+import homeDarkMode from './assets/homeDarkMode.png';
+import homeActiveDarkMode from './assets/homeActiveDarkMode.png';
 import orderIcon from './assets/shopping-bag.png';
+import orderActiveIcon from './assets/shopping-bagActive.png';
+import orderDarkMode from './assets/shopping-bagDarkMode.png';
+import orderActiveDarkMode from './assets/shopping-bagActiveDarkMode.png';
+import cartIcon from './assets/shopping-cart.png';
+import cartActiveIcon from './assets/shopping-cartActive.png';
+import cartDarkMode from './assets/shopping-cartDarkMode.png';
+import cartActiveDarkMode from './assets/shopping-cartActiveDarkMode.png';
 import settingIcon from './assets/cogwheel.png';
+import settingActiveIcon from './assets/cogwheelActive.png';
+import settingDarkMode from './assets/cogwheelDarkMode.png';
+import settingActiveDarkMode from './assets/cogwheelActiveDarkMode.png';
 import { MyContext } from './components/context/appContext';
 
 const homeStack = createNativeStackNavigator();
@@ -87,12 +95,22 @@ const bottomTab = ( cart, isDarkMode ) =>
         headerShown: false,
         tabBarStyle: { 
           position: 'absolute',
+          backgroundColor: isDarkMode ? '#202020' : '#fff'
          },
       }}>
         <Tab.Screen 
             name="Home" 
             children={() => <HomeStackScreen isDarkMode={isDarkMode} />}
-            options={ 
+            options={
+                isDarkMode ? {
+                    tabBarIcon: ({ focused }) =>
+                        focused ?
+                            <Image source={homeActiveDarkMode} style={{ height: 25, width: 25, }} />
+                            : <Image source={homeDarkMode} style={{ height: 25, width: 25, }} />
+                    ,
+                    tabBarActiveTintColor: '#fff'
+                }
+                :
                 {
                   tabBarIcon:({ focused }) => 
                     focused ?
@@ -107,6 +125,15 @@ const bottomTab = ( cart, isDarkMode ) =>
             name="Shop" 
             children={() => <ShopStackScreen isDarkMode={isDarkMode} />}
             options={
+                isDarkMode ?
+                {
+                    tabBarIcon:({ focused }) => 
+                      focused ?
+                      <Image source={ orderActiveDarkMode } style={{height:25, width:25,}} />
+                      : <Image source={ orderDarkMode } style={{height:25, width:25,}} />,
+                    tabBarActiveTintColor: '#fff'
+                }
+                :
                 {
                     tabBarIcon:({ focused }) => 
                       focused ?
@@ -118,9 +145,19 @@ const bottomTab = ( cart, isDarkMode ) =>
         />
         <Tab.Screen 
             name="Cart" 
-            // component={() => <CartStackScreen isDarkMode={isDarkMode} />} 
             children={() => <CartStackScreen isDarkMode={isDarkMode} />}
             options={
+                isDarkMode ?
+                {
+                    tabBarIcon:({ focused }) => 
+                    focused ?
+                    <Image source={ cartActiveDarkMode } style={{height:25, width:25,}} />
+                    : <Image source={ cartDarkMode } style={{height:25, width:25,}} />,
+                    tabBarActiveTintColor: '#fff',
+                    tabBarBadge: cart.length,
+                    tabBarBadgeStyle: { backgroundColor: '#00FFEA', color: '#000' }
+                }
+                :
                 {
                     tabBarIcon:({ focused }) => 
                     focused ?
@@ -136,6 +173,15 @@ const bottomTab = ( cart, isDarkMode ) =>
             name="Settings" 
             children={() => <SettingsStackScreen isDarkMode={isDarkMode} />}
             options={
+                isDarkMode ? 
+                {
+                    tabBarIcon:({ focused }) => 
+                    focused ?
+                    <Image source={ settingActiveDarkMode } style={{height:25, width:25,}} />
+                    : <Image source={ settingDarkMode } style={{height:25, width:25,}} />,
+                    tabBarActiveTintColor: '#fff'
+                }
+                :
                 {
                     tabBarIcon:({ focused }) => 
                     focused ?
