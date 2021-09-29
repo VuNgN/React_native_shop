@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     paddingLeft: 20,
     paddingRight: 20,
+    paddingBottom: 50,
   },
   scrollView: {
     paddingTop: 10,

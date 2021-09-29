@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingLeft: 20,
     paddingRight: 20,
+    paddingBottom: 50,
   },
   scrollView: {
     paddingTop: 20,
